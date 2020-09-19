@@ -42,6 +42,7 @@ async function run() {
 
   // students tasks
   await studentTasks.task1(studentsCollection)
+  await studentTasks.task2(studentsCollection)
 
   await connection.close()
 }
