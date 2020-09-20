@@ -8,7 +8,9 @@ async function task1(collection) {
         .map(mapUser);
       const { result } = await collection.insertMany(users);
       console.log("  //  Create 2 users per department (a, b, c)  //  ")
-      console.log(`Created users: ${result}`);
+      console.log("----------------------------------------------------");
+      console.log(`Created ${result.n} user(s)`);
+      console.log("----------------------------------------------------");
     } catch (err) {
       console.error(err)
     }
@@ -20,8 +22,10 @@ async function task2(collection) {
   try {
     const query = { department: 'a' };
     const { result } = await collection.deleteOne(query);
-    console.log("  //  Delete 1 user from department (a)  //  ")
-    console.log(`Deleted user: ${result}`);
+    console.log("  //  Delete 1 user from department (a)  //  ");
+    console.log("----------------------------------------------------");
+    console.log(`Deleted ${result.n} user(s)`);
+    console.log("----------------------------------------------------");
   } catch (err) {
     console.error(err)
   }
@@ -40,8 +44,10 @@ async function task3(collection) {
       }
     }))
     const { result } = await collection.bulkWrite(bulkWrite);
-    console.log("  //  Update firstName for users from department (b)  //  ")
-    console.log(`Created users: ${result.nModified}`);
+    console.log("  //  Update firstName for users from department (b)  //  ");
+    console.log("----------------------------------------------------");
+    console.log(`Updated ${result.nModified} user(s)`);
+    console.log("----------------------------------------------------");
   } catch (err) {
     console.error(err)
   }
@@ -52,8 +58,11 @@ async function task4(collection) {
   try {
     const query = { department: 'c' };
     const selectedUsers = await collection.find(query).toArray();
-    console.log("  //  Find all users from department (c)  //  ")
-    console.log(`Found users: ${selectedUsers}`);
+    console.log("  //  Find all users from department (c)  //  ");
+    console.log("----------------------------------------------------");
+    console.log(`Found ${selectedUsers.length} user(s):`);
+    console.log("----------------------------------------------------");
+    console.log(selectedUsers);
   } catch (err) {
     console.error(err)
   }

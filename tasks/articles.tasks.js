@@ -8,7 +8,9 @@ async function task1(collection) {
         .map(mapArticle);
       const { result } = await collection.insertMany(articles);
       console.log("  //  Create 5 articles per each type (a, b, c)  //  ");
-      console.log(`Created articles: ${result}`);
+      console.log("----------------------------------------------------");
+      console.log(`Created ${result.n} article(s)`);
+      console.log("----------------------------------------------------");
     } catch (err) {
       console.error(err)
     }
@@ -29,7 +31,9 @@ async function task2(collection) {
         }));
         const { result } = await collection.bulkWrite(bulkWrite);
         console.log("  //  Find articles with type a, and update tag list with next value [‘tag1-a’, ‘tag2-a’, ‘tag3’]  //  ");
-        console.log(`Updated articles: ${result.nModified}`);
+        console.log("----------------------------------------------------");
+        console.log(`Updated ${result.nModified} article(s)`);
+        console.log("----------------------------------------------------");
     } catch (err) {
         console.error(err)
     }
@@ -50,7 +54,9 @@ async function task3(collection) {
         }));
         const { result } = await collection.bulkWrite(bulkWrite);
         console.log("  //  Add tags [‘tag2’, ‘tag3’, ‘super’] to other articles except articles from type a  //  ");
-        console.log(`Updated articles: ${result.nModified}`);
+        console.log("----------------------------------------------------");
+        console.log(`Updated ${result.nModified} article(s)`);
+        console.log("----------------------------------------------------");
     } catch (err) {
         console.error(err)
     }
@@ -68,7 +74,9 @@ async function task4(collection) {
         
         const selectedArticles = await collection.find(query).toArray();
         console.log("  //  Find all articles that contain tags [tag2, tag1-a]  //  ");
-        console.log(`Found articles: ${selectedArticles}`);
+        console.log("----------------------------------------------------");
+        console.log(`Found ${selectedArticles.length} article(s)`);
+        console.log("----------------------------------------------------");
     } catch (err) {
         console.error(err)
     }
@@ -88,9 +96,10 @@ async function task5(collection) {
             }
           }))
           const { result } = await collection.bulkWrite(bulkWrite);
-          console.log("  //  Pull [tag2, tag1-a] from all articles  //  ");
-        console.log(`Updated articles: ${result.nModified}`);
-          console.log(result.nModified);
+        console.log("  //  Pull [tag2, tag1-a] from all articles  //  ");
+        console.log("----------------------------------------------------");
+        console.log(`Updated ${result.nModified} article(s)`);
+        console.log("----------------------------------------------------");
     } catch (err) {
         console.error(err)
     }
